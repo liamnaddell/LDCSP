@@ -1,4 +1,4 @@
-#Welcome to Liam's multi computer echo server(LMCE)
+#Welcome to Liam's Distributable Chat Server Project(LDCSP)
 ##About
 Liam's multi computer echo server contains 3 pieces. The server and the 2 receivers.  You start the server and the 2 recivers, then you whatever you enter on one screen will appear on the other. 
 ##Nhelo
