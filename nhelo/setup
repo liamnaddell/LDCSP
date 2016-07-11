@@ -1,0 +1,2 @@
+export GOPATH=$HOME/repos/LMCE/nhelo
+export PATH=$HOME/repos/LMCE/nhelo/bin:$PATH

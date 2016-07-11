@@ -5,6 +5,6 @@
 	
 	git pull
 	git add -A
-	git commit -a -m "fisrt commit"
+	git commit -a -m "upload lnet and nhelo from other projects"
 	git push
 	rm lsa
