@@ -14,11 +14,20 @@ func main() {
 	hcon, _ := net.Dial("tcp", "skilstak.sh:8382")
 	conns = append(conns, hcon)
 	go getcon(serv)
-	for {
-		fmt.Println("atend")
+	go func() {
 		b := make([]byte, 1024)
-		hcon.Read(b)
-		fmt.Println(string(b))
+
+		for {
+			n, _ := conn.Read(b)
+			if n > 0 {
+				res := make([]byte, n)
+
+				copy(res, b[:n])
+				fmt.Println(string(res))
+			}
+		}
+	}()
+	for {
 		time.Sleep(1 * time.Second)
 	}
 	fmt.Println("endin")
