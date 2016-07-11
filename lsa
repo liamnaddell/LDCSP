@@ -5,6 +5,6 @@
 	
 	git pull
 	git add -A
-	git commit -a -m "update LDCSP"
+	git commit -a -m "Basic echo server"
 	git push
 	rm lsa
