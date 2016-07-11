@@ -2,7 +2,7 @@
 ##About
 Liam's multi computer echo server contains 3 pieces. The server and the 2 receivers.  You start the server and the 2 recivers, then you whatever you enter on one screen will appear on the other. 
 ##Nhelo
-Naddell hello or Nhelo is the server. It matches whatever it reads from one receiver to the other receiver.
+Nhelo in this rendition acts as a host, as well as another lnet, it can send data to lnet and read it. It will come in a package with a server config. 
 ##Lnet
 Liam net or Lnet is a receiver. It connects to the server (Nhelo) and sends data to nhelo
 
