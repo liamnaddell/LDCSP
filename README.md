@@ -1,6 +1,6 @@
 #Welcome to Liam's Distributable Chat Server Project(LDCSP)
 ##About
-Liam's multi computer echo server contains 3 pieces. The server and the 2 receivers.  You start the server and the 2 recivers, then you whatever you enter on one screen will appear on the other. 
+Liam's Distributable Chat Server Project contains 3 pieces. The server and the 2 receivers.  You start the server and the 2 recivers, then you whatever you enter on one screen will appear on the other. 
 ##Nhelo
 Nhelo in this rendition acts as a host, as well as another lnet, it can send data to lnet and read it. It will come in a package with a server config. 
 ##Lnet
