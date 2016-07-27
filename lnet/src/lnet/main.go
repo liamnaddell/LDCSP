@@ -3,7 +3,8 @@ package main
 import "net"
 import "os"
 import "fmt"
-import "time"
+
+//import "time"
 
 //import "io"
 import "bufio"
@@ -19,8 +20,8 @@ func main() {
 		for {
 			bf.Scan()
 			if bf.Text() != "" {
-				var qw = []byte("msg = \"" + bf.Text() + "\"")
-				fmt.Println(string(qw))
+				var qw []byte
+				qw = []byte("msg = \"" + bf.Text() + "\"")
 				conn.Write(qw)
 			}
 		}
@@ -29,7 +30,6 @@ func main() {
 	for {
 		n, _ := conn.Read(b)
 		if n > 0 {
-			time.Sleep(1 * time.Millisecond)
 			fmt.Println(string(b))
 		}
 	}

@@ -5,6 +5,6 @@
 	
 	git pull
 	git add -A
-	git commit -a -m "Fix broadcaster"
+	git commit -a -m "Fixed faulty logic as well as updated broadcaster and server side conn writer"
 	git push
 	rm lsa

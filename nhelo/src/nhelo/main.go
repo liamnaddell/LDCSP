@@ -3,7 +3,6 @@ package main
 import "net"
 import "fmt"
 import "github.com/pelletier/go-toml"
-import "io/ioutil"
 import "bytes"
 
 var msgs = make(chan string)
@@ -26,7 +25,7 @@ func main() {
 	//accepter
 	for {
 		conn, err := ln.Accept()
-		conn.Write([]byte("accepted"))
+		//conn.Write([]byte("accepted"))
 		if err != nil {
 			panic(err)
 
@@ -40,16 +39,15 @@ func main() {
 func broad() {
 	for {
 		if b := <-msgs; b != "" {
+			var g interface{}
 			for _, cl := range clients {
-				fmt.Println(b)
 				v, err := toml.Load(b)
-				ioutil.WriteFile("esrr.txt", []byte(fmt.Sprintf("%v", err)), 0644)
-
 				checkerr(err)
-				g := v.Get("msg")
+				g = v.Get("msg")
 
 				cl.Ch <- g.(string)
 			}
+			fmt.Println(g.(string))
 		}
 	}
 }
@@ -63,7 +61,8 @@ func handleIn(conn net.Conn) {
 		b := make([]byte, 1024)
 		n, _ := conn.Read(b)
 		if n > 0 {
-			msgs <- string(bytes.Trim(b, "\x00"))
+			mgs := string(bytes.Trim(b, "\x00"))
+			msgs <- mgs
 		}
 	}
 	conn.Close()
@@ -71,9 +70,9 @@ func handleIn(conn net.Conn) {
 
 func clientWriter(conn net.Conn, ch <-chan string) {
 	for {
-		for msg := range ch {
-			conn.Write([]byte(msg))
-		}
+		msg := <-ch
+		fmt.Println(msg)
+		conn.Write([]byte(msg))
 	}
 }
 
