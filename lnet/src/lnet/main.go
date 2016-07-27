@@ -1,17 +1,38 @@
 package main
 
 import "net"
-import "time"
+import "os"
 import "fmt"
+import "time"
+
+//import "io"
+import "bufio"
+
+//import "github.com/pelletier/go-toml"
 
 func main() {
 	conn, err := net.Dial("tcp", "skilstak.sh:9000")
 	checkerr(err)
-	conn.Write([]byte("shalom"))
-	time.Sleep(4 * time.Second)
+	//writer
+	bf := bufio.NewScanner(os.Stdin)
+	go func() {
+		for {
+			bf.Scan()
+			if bf.Text() != "" {
+				var qw = []byte("msg = \"" + bf.Text() + "\"")
+				fmt.Println(string(qw))
+				conn.Write(qw)
+			}
+		}
+	}()
 	b := make([]byte, 1024)
-	conn.Read(b)
-	fmt.Println(string(b))
+	for {
+		n, _ := conn.Read(b)
+		if n > 0 {
+			time.Sleep(1 * time.Millisecond)
+			fmt.Println(string(b))
+		}
+	}
 }
 
 func checkerr(err error) {

@@ -1,2 +1,2 @@
-export GOPATH=$HOME/repos/LMCE/lnet
-export PATH=$HOME/repos/LMCE/lnet/bin:$PATH
+export GOPATH=$HOME/repos/LDCSP/lnet
+export PATH=$HOME/repos/LDCSP/lnet/bin:$PATH
