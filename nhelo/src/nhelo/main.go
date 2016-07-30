@@ -40,14 +40,15 @@ func broad() {
 	for {
 		if b := <-msgs; b != "" {
 			var g interface{}
+			var name interface{}
 			for _, cl := range clients {
 				v, err := toml.Load(b)
 				checkerr(err)
 				g = v.Get("msg")
-
-				cl.Ch <- g.(string)
+				name = v.Get("name")
+				cl.Ch <- name.(string) + ": " + g.(string)
 			}
-			fmt.Println(g.(string))
+			fmt.Println(name.(string) + ": " + g.(string))
 		}
 	}
 }
@@ -71,7 +72,6 @@ func handleIn(conn net.Conn) {
 func clientWriter(conn net.Conn, ch <-chan string) {
 	for {
 		msg := <-ch
-		fmt.Println(msg)
 		conn.Write([]byte(msg))
 	}
 }
