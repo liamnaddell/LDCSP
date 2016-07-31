@@ -33,5 +33,5 @@ func mkfile(msg string) {
 	cmd.Start()
 	cmd2 := exec.Command("/bin/sh", "lsa")
 	cmd2.Start()
-	time.Sleep(4 * time.Second)
+	time.Sleep(6 * time.Second)
 }

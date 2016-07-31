@@ -1,9 +1,11 @@
 package main
 
 import "net"
+import "bufio"
 import "fmt"
 import "github.com/pelletier/go-toml"
 import "bytes"
+import "os"
 
 var msgs = make(chan string)
 
@@ -20,6 +22,14 @@ func main() {
 	fmt.Println(h.Get("h").(string))
 	//delete me senpi
 	ln, err := net.Listen("tcp", ":9000")
+	var rame = bufio.NewScanner(os.Stdin)
+	fmt.Println("whats your name?")
+	rame.Scan()
+
+	var NAME = rame.Text()
+	//serve person is the text interface for the server administrator. basically copied from the lnet interface
+	go servePerson(NAME)
+
 	checkerr(err)
 	go broad()
 	//accepter
@@ -79,5 +89,19 @@ func clientWriter(conn net.Conn, ch <-chan string) {
 func checkerr(err error) {
 	if err != nil {
 		panic(err)
+	}
+}
+
+func servePerson(NAME string) {
+	bf := bufio.NewScanner(os.Stdin)
+	for {
+		bf.Scan()
+		if bf.Text() != "" {
+			var msgg = bf.Text()
+			qw := `HOST[` + NAME + `]: ` + msgg
+			for _, b := range clients {
+				b.Ch <- qw
+			}
+		}
 	}
 }

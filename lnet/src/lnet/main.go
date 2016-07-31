@@ -22,20 +22,21 @@ func main() {
 				var msgg = bf.Text()
 				qw := []byte(`msg = "` + msgg + `"
 				name = "` + Name + `"`)
-				println("debug:" + msgg)
 				conn.Write(qw)
 				msgg = ""
 			}
 		}
 	}()
 
-	//fix printing error mistake here
 	b := make([]byte, 1024)
 	for {
 		n, _ := conn.Read(b)
 		if n > 0 {
-
-			fmt.Println(string(b))
+			var buf = make([]byte, n)
+			var empb = make([]byte, 0)
+			copy(buf, b)
+			fmt.Println(string(buf))
+			buf = empb
 		}
 	}
 }
