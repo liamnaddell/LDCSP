@@ -13,3 +13,5 @@ This is the start of a chat server project involving a fully fledged distributab
 <li>LMCCS-Liam's multi computer chat server</li>
 <li>LDCSP-Liam's distributable chat server project</li>
 </ol>
+#images
+![graph](https://github.com/17liamnaddell/LDCSP/dia.png)
