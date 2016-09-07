@@ -14,4 +14,4 @@ This is the start of a chat server project involving a fully fledged distributab
 <li>LDCSP-Liam's distributable chat server project</li>
 </ol>
 #images
-![graph](https://github.com/17liamnaddell/LDCSP/dia.png)
+![graph](dia.png)
