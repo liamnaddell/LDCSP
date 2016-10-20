@@ -12,7 +12,7 @@ func main() {
 	checkerr(err)
 	//writer
 	bf := bufio.NewScanner(os.Stdin)
-	fmt.Println("whats your name")
+	fmt.Println("what\'s your name")
 	bf.Scan()
 	var Name = bf.Text()
 	go func() {
