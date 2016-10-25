@@ -1,2 +1,0 @@
-export GOPATH=$HOME/repos/LDCSP/lnet
-export PATH=$HOME/repos/LDCSP/lnet/bin:$PATH

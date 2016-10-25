@@ -1,2 +1,0 @@
-export GOPATH=$HOME/repos/LDCSP/nhelo
-export PATH=$HOME/repos/LDCSP/nhelo/bin:$PATH
