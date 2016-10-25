@@ -16,11 +16,6 @@ type Client struct {
 var clients []Client
 
 func main() {
-	//delete me senpi
-	h, err1 := toml.LoadFile("h.toml")
-	checkerr(err1)
-	fmt.Println(h.Get("h").(string))
-	//delete me senpi
 	ln, err := net.Listen("tcp", ":9000")
 	var rame = bufio.NewScanner(os.Stdin)
 	fmt.Println("whats your name?")

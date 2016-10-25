@@ -8,11 +8,13 @@ import "bufio"
 //import "github.com/pelletier/go-toml"
 
 func main() {
-	conn, err := net.Dial("tcp", "skilstak.sh:9000")
+	bf := bufio.NewScanner(os.Stdin)
+	fmt.Println("what server do you want to connect to?\n>")
+	bf.Scan()
+	conn, err := net.Dial("tcp", bf.Text()+":9000")
 	checkerr(err)
 	//writer
-	bf := bufio.NewScanner(os.Stdin)
-	fmt.Println("what\'s your name")
+	fmt.Println("what's your name")
 	bf.Scan()
 	var Name = bf.Text()
 	go func() {
