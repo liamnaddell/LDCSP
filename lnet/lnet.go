@@ -1,4 +1,4 @@
-package main
+package lnet
 
 import "net"
 import "os"
@@ -7,9 +7,9 @@ import "bufio"
 
 //import "github.com/pelletier/go-toml"
 
-func main() {
+func JoinServer() {
 	bf := bufio.NewScanner(os.Stdin)
-	fmt.Println("what server do you want to connect to?\n>")
+	fmt.Print("what server do you want to connect to?>")
 	bf.Scan()
 	conn, err := net.Dial("tcp", bf.Text()+":9000")
 	checkerr(err)

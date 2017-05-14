@@ -1,4 +1,4 @@
-package main
+package nhelo
 
 import "net"
 import "bufio"
@@ -15,7 +15,7 @@ type Client struct {
 
 var clients []Client
 
-func main() {
+func HostServer() {
 	ln, err := net.Listen("tcp", ":9000")
 	var rame = bufio.NewScanner(os.Stdin)
 	fmt.Println("whats your name?")
