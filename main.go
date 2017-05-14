@@ -1,7 +1,7 @@
 package main
 
-import "github.com/liamnaddell/LDCSP/ldcsp/nhelo"
-import "github.com/liamnaddell/LDCSP/ldcsp/lnet"
+import "github.com/liamnaddell/LDCSP/nhelo"
+import "github.com/liamnaddell/LDCSP/lnet"
 import "fmt"
 import "os"
 
