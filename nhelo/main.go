@@ -35,7 +35,6 @@ func main() {
 			panic(err)
 
 		} else {
-			fmt.Println("inHandle")
 			go handleIn(conn)
 		}
 	}
