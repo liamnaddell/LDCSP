@@ -1,10 +1,9 @@
-package nhelo
+package ldcsp
 
 import "net"
 import "bufio"
 import "fmt"
-import "github.com/pelletier/go-toml"
-import "bytes"
+import "strings"
 import "os"
 
 var msgs = make(chan string)
@@ -14,6 +13,11 @@ type Client struct {
 }
 
 var clients []Client
+
+type umsg struct {
+	Msg  string
+	Name string
+}
 
 func HostServer() {
 	ln, err := net.Listen("tcp", ":9000")
@@ -43,16 +47,16 @@ func HostServer() {
 func broad() {
 	for {
 		if b := <-msgs; b != "" {
-			var g interface{}
-			var name interface{}
+			var g string
+			var name string
 			for _, cl := range clients {
-				v, err := toml.Load(b)
-				checkerr(err)
-				g = v.Get("msg")
-				name = v.Get("name")
-				cl.Ch <- name.(string) + ": " + g.(string)
+				//v, err := toml.Load(b)
+				g, name = getInfo(b)
+				//g = v.Get("msg")
+				//name = v.Get("name")
+				cl.Ch <- name + ": " + g
 			}
-			fmt.Println(name.(string) + ": " + g.(string))
+			fmt.Println(name + ": " + g)
 		}
 	}
 }
@@ -66,8 +70,8 @@ func handleIn(conn net.Conn) {
 		b := make([]byte, 1024)
 		n, _ := conn.Read(b)
 		if n > 0 {
-			mgs := string(bytes.Trim(b, "\x00"))
-			msgs <- mgs
+			//	mgs := string(bytes.Trim(b, "\x00"))
+			msgs <- string(b)
 		}
 	}
 	conn.Close()
@@ -98,4 +102,9 @@ func servePerson(NAME string) {
 			}
 		}
 	}
+}
+
+func getInfo(s string) (string, string) {
+	ss := strings.Split(s, "←")
+	return ss[0], ss[1]
 }

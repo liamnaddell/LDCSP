@@ -1,11 +1,14 @@
-package lnet
+package ldcsp
 
 import "net"
 import "os"
 import "fmt"
 import "bufio"
 
-//import "github.com/pelletier/go-toml"
+type msg struct {
+	msg  string
+	name string
+}
 
 func JoinServer() {
 	bf := bufio.NewScanner(os.Stdin)
@@ -22,29 +25,24 @@ func JoinServer() {
 			bf.Scan()
 			if bf.Text() != "" {
 				var msgg = bf.Text()
-				qw := []byte(`msg = "` + msgg + `"
-				name = "` + Name + `"`)
+				if err != nil {
+					fmt.Println(err)
+				}
+				qw := []byte(fmt.Sprintf("%s←%s", msgg, Name))
 				conn.Write(qw)
 				msgg = ""
 			}
 		}
 	}()
-
 	b := make([]byte, 1024)
+	var empb = make([]byte, 0)
 	for {
 		n, _ := conn.Read(b)
-		if n > 0 {
+		if n != 0 {
 			var buf = make([]byte, n)
-			var empb = make([]byte, 0)
 			copy(buf, b)
 			fmt.Println(string(buf))
 			buf = empb
 		}
-	}
-}
-
-func checkerr(err error) {
-	if err != nil {
-		panic(err)
 	}
 }
